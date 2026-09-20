@@ -62,3 +62,4 @@ Async Task Manager
 
 Введите `1`, затем укажите URL проверяемого ресурса (например, `https://google.com`). Программа выполнит запрос, выведет время отклика и HTTP-статус.
 # Async-Task-Manager
+# Async-Task-Manager
