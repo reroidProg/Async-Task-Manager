@@ -1,6 +1,5 @@
 import asyncio
 import httpx
-from typing_extensions import List
 
 class PingChecker:
     def __init__(self) -> None:
