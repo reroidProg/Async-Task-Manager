@@ -8,13 +8,16 @@ class PingChecker:
     async def ping(self, url) -> list:
         try:
             response = await self.client.get(url)
-
-            data = [int(response.elapsed.total_seconds() * 1000), response.status_code]
-            return data
+            elapsed = int(response.elapsed.total_seconds() * 1000)
+            status = response.status_code
+            ok = status < 400
+            return [url, elapsed, status, ok]
         except httpx.ConnectTimeout:
-            print("Нет доступа...")
+            print(f"Нет доступа к {url}...")
             return []
         except httpx.UnsupportedProtocol:
-            print("Неверный формат...")
+            print(f"Неверный формат URL: {url}...")
             return []
-        self.client.aclose()
+        except Exception:
+            print(f"Ошибка при запросе {url}...")
+            return []
